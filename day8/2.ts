@@ -20,7 +20,7 @@ function calculateViewScoreForDirection(
   let score = 0;
   if (direction === 'top') {
     let newY = y - 1;
-    while (grid.get(x, newY)) {
+    while (grid.get(x, newY) != null) {
       score += 1;
       if (grid.get(x, newY)! >= current) {
         break;
@@ -31,7 +31,7 @@ function calculateViewScoreForDirection(
   }
   if (direction === 'bottom') {
     let newY = y + 1;
-    while (grid.get(x, newY)) {
+    while (grid.get(x, newY) != null) {
       score += 1;
       if (grid.get(x, newY)! >= current) {
         break;
@@ -42,7 +42,7 @@ function calculateViewScoreForDirection(
   }
   if (direction === 'left') {
     let newX = x - 1;
-    while (grid.get(newX, y)) {
+    while (grid.get(newX, y) != null) {
       score += 1;
       if (grid.get(newX, y)! >= current) {
         break;
@@ -53,7 +53,7 @@ function calculateViewScoreForDirection(
   }
   if (direction === 'right') {
     let newX = x + 1;
-    while (grid.get(newX, y)) {
+    while (grid.get(newX, y) != null) {
       score += 1;
       if (grid.get(newX, y)! >= current) {
         break;
@@ -76,9 +76,6 @@ function calculateViewScore(x: number, y: number) {
 const viewScores: number[] = [];
 for (const { x, y } of grid) {
   viewScores.push(calculateViewScore(x, y));
-  // if (calculateViewScore(x, y) >= 178000) {
-  // console.log({ x, y });
-  // }
 }
 
 console.log(Math.max(...viewScores));
