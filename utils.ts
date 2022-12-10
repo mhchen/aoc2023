@@ -103,11 +103,13 @@ export class Grid<T extends string | number> {
     }
   }
 
-  print() {
+  print(withSpace = false) {
     for (let y = this.minY; y <= this.maxY; y++) {
       for (let x = this.minX; x <= this.maxX; x++) {
         process.stdout.write(this.get(x, y)?.toString() || '.');
-        process.stdout.write(' ');
+        if (withSpace) {
+          process.stdout.write(' ');
+        }
       }
       process.stdout.write('\n');
     }
