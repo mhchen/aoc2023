@@ -11,7 +11,7 @@ export function parseInput() {
 type Row<T> = Map<number, T>;
 type GridData<T> = Map<number, Row<T>>;
 
-export class Grid<T extends string | number> {
+export class Grid<T> {
   private data: GridData<T> = new Map();
 
   minX = 0;
@@ -106,6 +106,7 @@ export class Grid<T extends string | number> {
   print(withSpace = false) {
     for (let y = this.minY; y <= this.maxY; y++) {
       for (let x = this.minX; x <= this.maxX; x++) {
+        // @ts-ignore
         process.stdout.write(this.get(x, y)?.toString() || '.');
         if (withSpace) {
           process.stdout.write(' ');
