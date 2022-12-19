@@ -119,4 +119,17 @@ export class Grid<T> {
   size() {
     return (this.maxY + 1 - this.minY) * (this.maxX + 1 - this.minX);
   }
+
+  clone() {
+    const newGrid = new Grid<T>();
+    for (const { x, y, value } of this) {
+      newGrid.set(x, y, value!);
+    }
+    return newGrid;
+  }
 }
+
+export type Coordinate = {
+  x: number;
+  y: number;
+};
