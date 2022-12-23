@@ -67,10 +67,6 @@ export class Grid<T> {
         y,
       },
       {
-        x,
-        y,
-      },
-      {
         x: x + 1,
         y,
       },
@@ -133,3 +129,23 @@ export type Coordinate = {
   x: number;
   y: number;
 };
+
+export function parseInputIntoGrid<T>() {
+  const lines = parseInput();
+  const grid = new Grid<T>();
+  for (const [y, line] of lines.entries()) {
+    for (const [x, char] of line.split('').entries()) {
+      grid.set(x, y, char as T);
+    }
+  }
+  return grid;
+}
+
+export function coordinatesToString(coordinates: Coordinate) {
+  return `${coordinates.x},${coordinates.y}`;
+}
+
+export function stringToCoordinates(coordinatesString: string): Coordinate {
+  const [x, y] = coordinatesString.split(',').map(Number);
+  return { x, y };
+}
