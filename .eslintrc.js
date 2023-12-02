@@ -33,5 +33,6 @@ module.exports = {
     'no-restricted-syntax': 0,
     'no-plusplus': 0,
     'no-void': 0,
+    '@typescript-eslint/no-shadow': 0,
   },
 };

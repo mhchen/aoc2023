@@ -1,23 +1,19 @@
 import { parseInput } from '../utils';
 
-const lines = parseInput();
-
-const elves: number[][] = [];
-let currentElf: number[] = [];
-for (const line of lines) {
-  if (line === '') {
-    elves.push(currentElf);
-    currentElf = [];
-    continue;
+const input = parseInput();
+const calculateScoreForLine = (line: string) => {
+  let firstDigit: string | undefined;
+  let lastDigit: string | undefined;
+  for (const char of line) {
+    if (!Number.isNaN(Number(char))) {
+      if (!firstDigit) {
+        firstDigit = char;
+      }
+      lastDigit = char;
+    }
   }
-  currentElf.push(parseInt(line, 10));
-}
 
-elves.push(currentElf);
+  return Number(`${firstDigit as string}${lastDigit as string}`);
+};
 
-const totals: number[] = [];
-for (const elf of elves) {
-  totals.push(elf.reduce((a, b) => a + b, 0));
-}
-
-console.log(Math.max(...totals));
+console.log(input.reduce((acc, line) => acc + calculateScoreForLine(line), 0));
